@@ -22,6 +22,9 @@ public class Board {
         }
     }
 
+    public Board(int i) {
+    }
+
     public int getDimension() {
         return dimension;
     }
