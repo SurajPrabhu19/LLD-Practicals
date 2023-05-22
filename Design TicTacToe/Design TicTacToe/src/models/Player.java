@@ -31,4 +31,18 @@ public class Player {
         this.name = name;
     }
 
+    public Move makeMove(Board board) {
+        Scanner sc = new Scanner(System.in);
+
+        System.out.println("Please enter your row (starting from 1)");
+        Integer row = sc.nextInt();
+        System.out.println("Please enter your col (starting from 1)");
+        Integer col = sc.nextInt();
+
+        Move move = new Move(row, col, this);
+
+        return move;
+
+    }
+
 }
