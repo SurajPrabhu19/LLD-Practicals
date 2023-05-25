@@ -73,17 +73,17 @@ public class Game {
     }
 
     public String makeMove() {
-        this.lastMovedPlayerIndex += 1;
-        this.lastMovedPlayerIndex %= players.size();
-
         // show the user the board before you make any move
         this.board.displayBoard();
+
+        // set the index to 0 to take the last
+        this.lastMovedPlayerIndex += 1;
+        this.lastMovedPlayerIndex %= players.size();
 
         // get the potentialMove based on type of player [Bot or Human]
         Move potentialMove = this.players.get(this.lastMovedPlayerIndex).makeMove(this.board);
 
         // check for empty cell else tell them to make the move again:
-        var temp_player = this.board.getCell(potentialMove.getRow() - 1, potentialMove.getCol() - 1).getPlayer();
         if (this.board.getCell(potentialMove.getRow() - 1, potentialMove.getCol() - 1).getPlayer() != null) {
             System.out.println("You cannot make this move");
             this.lastMovedPlayerIndex--;
@@ -101,15 +101,18 @@ public class Game {
 
         // check the win based on winning strategy:
         for (GameWinningStrategy gameWinningStrategy : gameWinningStrategies) {
-            if (gameWinningStrategy.checkVictory(board, lastMovedPlayerIndex, players))
+            if (gameWinningStrategy.checkVictory(board, lastMovedPlayerIndex, players)) {
                 this.gameStatus = GameStatus.ENDED;
-            winner = this.players.get(lastMovedPlayerIndex);
-            return winner.getName();
+                this.board.displayBoard();
+                winner = this.players.get(lastMovedPlayerIndex);
+                return winner.getName();
+            }
         }
 
         if (filledCells == (this.players.size() + 1) * (this.players.size() + 1)) {
             gameStatus = GameStatus.DRAW;
         }
+
         return "";
     }
 
