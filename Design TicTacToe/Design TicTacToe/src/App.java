@@ -18,6 +18,7 @@ public class App {
 
         List<Player> players = new ArrayList<>();
 
+        new ArrayList<Object>();
         for (int i = 0; i < numberOfBots; ++i) {
             System.out.println("Name of Bot " + (i + 1));
             String botName = scanner.next();
@@ -27,7 +28,8 @@ public class App {
 
             System.out.println("Difficulty of Bot " + (i + 1));
             String difficultyLevel = scanner.next();
-            BotDifficultyLevel botDifficultyLevel = BotDifficultyLevelFactory.getBotDifficultyLevelFromString(difficultyLevel);
+            BotDifficultyLevel botDifficultyLevel = BotDifficultyLevelFactory
+                    .getBotDifficultyLevelFromString(difficultyLevel);
 
             players.add(PlayerFactory.createBotPlayer(botName, character, botDifficultyLevel));
         }
@@ -49,19 +51,21 @@ public class App {
 
         for (int i = 0; i < winningStrategiesCount; ++i) {
             System.out.println("Name strategy " + i);
-            gameWinningStrategyNames.add(GameWinningStrategyEnumFactory.
-                    getGameWinningStrategyNameFromString(scanner.next()));
+            gameWinningStrategyNames
+                    .add(GameWinningStrategyEnumFactory.getGameWinningStrategyNameFromString(scanner.next()));
         }
 
         Game game = Game.getBuilder()
-                        .setGameWinningStrategies(gameWinningStrategyNames)
-                                .setPlayers(players)
-                                        .build();
+                .setGameWinningStrategies(gameWinningStrategyNames)
+                .setPlayers(players)
+                .build();
 
+        String winner = "";
         while (game.getGameStatus().equals(GameStatus.IN_PROGRESS)) {
-            game.makeMove();
+            winner = game.makeMove();
         }
 
+        System.out.println("Winner is: " + winner);
     }
 }
 
@@ -76,8 +80,6 @@ public class App {
 // 3. Decide Winning Rules
 
 // Break till 10: 35 PM
-
-}}
 
 // Client -> AppClass -> Controller -> Models
 

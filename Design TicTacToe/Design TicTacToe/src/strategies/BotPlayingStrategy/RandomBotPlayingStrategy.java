@@ -10,7 +10,14 @@ public class RandomBotPlayingStrategy implements BotPlayingStrategy {
     public Move makeMove(Board board, Player player) {
 
         // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'makeMove'");
+        for (var row : board.getBoard()) {
+            for (var cell : row) {
+                if (cell.getPlayer() == null) {
+                    return new Move(cell.getRow(), cell.getColumn(), player);
+                }
+            }
+        }
+        return null;
     }
 
 }
