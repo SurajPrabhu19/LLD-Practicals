@@ -15,6 +15,7 @@ public class Game {
 
     // Since we have a lot of params + requires validation, we go for BUILDER-DP
     private List<Player> players;
+    int temp = 0;
     private Board board;
     private List<Move> moves;
     private List<GameWinningStrategy> gameWinningStrategies;
