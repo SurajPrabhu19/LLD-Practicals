@@ -4,6 +4,8 @@ import java.util.Date;
 import java.util.List;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
@@ -21,7 +23,7 @@ public class Ticket extends BaseModel {
     private User user;
 
     @ManyToOne
-    private Show show;
+    private MainShow mainShow;
 
     @ManyToMany
     // this is a unique case where the cardinality is many to many
@@ -32,5 +34,6 @@ public class Ticket extends BaseModel {
     @OneToMany(mappedBy = "ticket") // this help ORM to avoid duplicate tables for same relation
     private List<Payment> paymentModes;
 
+    @Enumerated(EnumType.ORDINAL)
     private TicketStatus status;
 }

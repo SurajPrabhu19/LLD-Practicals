@@ -1,6 +1,8 @@
 package com.scaler.bookmyshow.models;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.ManyToOne;
 import lombok.Getter;
 import lombok.Setter;
@@ -11,9 +13,10 @@ import lombok.Setter;
 public class SeatTypeShow extends BaseModel {
 
     @ManyToOne
-    private Show show;
+    private MainShow mainShow;
 
-    @ManyToOne
+    // @ManyToOne
+    @Enumerated(EnumType.ORDINAL)
     private SeatType seatType;
 
     private double price;

@@ -3,8 +3,10 @@ package com.scaler.bookmyshow.models;
 import java.util.Date;
 import java.util.List;
 
+import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
-import jakarta.persistence.ManyToMany;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.ManyToOne;
 import lombok.Getter;
 import lombok.Setter;
@@ -12,7 +14,8 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
-public class Show {
+// @Table(name = "MainShow")
+public class MainShow extends BaseModel {
     private double price;
     private Date startTime;
     private Date endTime;
@@ -20,7 +23,9 @@ public class Show {
     @ManyToOne
     private Movie movie;
 
-    @ManyToMany
+    // @ManyToMany
+    @ElementCollection
+    @Enumerated(EnumType.ORDINAL)
     private List<MovieFeature> features;
 
     @ManyToOne
