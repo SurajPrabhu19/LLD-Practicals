@@ -6,6 +6,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
+import com.scaler.bookmyshow.exceptions.AuditoriumNotFoundException;
+import com.scaler.bookmyshow.exceptions.MovieNotFoundException;
 import com.scaler.bookmyshow.models.MainShow;
 import com.scaler.bookmyshow.models.MovieFeature;
 import com.scaler.bookmyshow.services.ShowService;
@@ -22,7 +24,7 @@ public class ShowController {
 
     public MainShow createShow(Date startTime, Date endTime, Long movieId, Long auditoriumId,
             List<MovieFeature> features,
-            Double price) {
+            Double price) throws MovieNotFoundException, AuditoriumNotFoundException {
         MainShow show = showService.createShow(startTime, endTime, movieId, auditoriumId, features, price);
         return show;
     }

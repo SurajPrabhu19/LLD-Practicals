@@ -26,7 +26,7 @@ public class MainShow extends BaseModel {
 
     // 1 : m
     // 1 : 1
-    @OneToMany(mappedBy = "show")
+    @OneToMany(mappedBy = "mainShow")
     private List<ShowSeat> showSeats;
 
     // @ManyToMany

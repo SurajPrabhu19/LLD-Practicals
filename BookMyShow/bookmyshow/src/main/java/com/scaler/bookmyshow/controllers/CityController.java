@@ -4,14 +4,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
 import com.scaler.bookmyshow.models.City;
-import com.scaler.bookmyshow.services.UserService;
+import com.scaler.bookmyshow.services.CityService;
 
 @Controller
 public class CityController {
-    private com.scaler.bookmyshow.services.CityService cityService;
+    private CityService cityService;
 
     @Autowired
-    public CityController(UserService cityService) {
+    public CityController(CityService cityService) {
         super();
         this.cityService = cityService;
     }
