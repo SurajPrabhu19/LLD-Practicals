@@ -8,6 +8,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -22,6 +23,11 @@ public class MainShow extends BaseModel {
 
     @ManyToOne
     private Movie movie;
+
+    // 1 : m
+    // 1 : 1
+    @OneToMany(mappedBy = "show")
+    private List<ShowSeat> showSeats;
 
     // @ManyToMany
     @ElementCollection
