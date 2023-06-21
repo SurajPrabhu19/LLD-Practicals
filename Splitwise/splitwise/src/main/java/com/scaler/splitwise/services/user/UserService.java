@@ -7,14 +7,19 @@ import org.springframework.stereotype.Service;
 
 import com.scaler.splitwise.models.User;
 import com.scaler.splitwise.repositories.UserRepository;
+import com.scaler.splitwise.services.passwordencoder.PasswordEncoder;
 
 @Service
 public class UserService {
     private UserRepository userRepository;
 
     @Autowired
+    private PasswordEncoder passwordEncoder;
+
+    @Autowired
     public UserService(UserRepository userRepository) {
         super();
+
         this.userRepository = userRepository;
     }
 
@@ -22,7 +27,7 @@ public class UserService {
         User newUser = new User();
         newUser.setName(name);
         newUser.setPhoneNo(phoneNo);
-        newUser.setPassword(password);
+        newUser.setPassword(passwordEncoder.getEncodedPassword(password));
         newUser.setCreatedDate(new Date());
 
         User savedUser = userRepository.save(newUser);
@@ -36,8 +41,18 @@ public class UserService {
         user.setPassword(newPassword);
 
         User savedUser = userRepository.save(user);
-        
-        return null-;
+
+        return savedUser;
+    }
+
+    public void Login(Long userId, String password) {
+        User user = userRepository.findUserById(userId);
+
+        if (passwordEncoder.matchPassword(password, user.getPassword())) {
+            System.out.println("Login Successful");
+        } else {
+            System.out.println("Incorrect Password");
+        }
     }
 
 }
