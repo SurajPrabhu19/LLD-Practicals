@@ -12,7 +12,7 @@ public class ExpensePayingUser extends BaseModel {
     private double amount;
 
     // 1EOU -> 1E
-    // 1E -> m-EOU
+    // 1E -> mEOU
     @ManyToOne
     private Expense expense;
 
