@@ -29,7 +29,8 @@ public class RegisterUserCommand implements Command {
         if (commandTokens.size() != 4) {
             return false;
         }
-
+        
+        // we use .equals since both are strings:
         if (!commandTokens.get(0).equals(CommandKeywords.REGISTER_USER_COMMAND)) {
             return false;
         }
